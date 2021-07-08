@@ -89,11 +89,11 @@ class PredictView(views.APIView):
 		prediction = algorithm_object.compute_prediction(request.data)
 
 
-		label = prediction["medv"] if "medv" in prediction else "error"
+		#label = prediction["medv"] if "medv" in prediction else "error"
 		ml_request = MLRequest(
 			input_data=json.dumps(request.data),
 			full_response=prediction,
-			response=label,
+			#response=label,
 			feedback="",
 			parent_mlalgorithm=algs[alg_index],
 )
