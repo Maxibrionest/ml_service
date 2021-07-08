@@ -10,10 +10,14 @@ class MLTests(TestCase):
 
 
     def test_dt_algorithm(self):
-        input_data = input_data = [6.998,18.7,2.94]
+        input_data = {
+        "rm":6.998,
+        "ptratio":18.7,
+        "lstat":2.94
+        }
 
         my_alg = DecisionTreeRegressor()
-        response = my_alg.compute_prediction(np.array(input_data).reshape(1, -1))
+        response = my_alg.compute_prediction(input_data)
         self.assertEqual('OK', response['status'])
         #self.assertTrue('label' in response)
         self.assertEqual(34.5375, np.around(response['medv'], decimals=4))

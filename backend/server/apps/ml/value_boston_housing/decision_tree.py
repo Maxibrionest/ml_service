@@ -1,5 +1,6 @@
 import joblib
 import pandas as pd
+import numpy as np
 
 class DecisionTreeRegressor:
     def __init__(self):
@@ -30,6 +31,9 @@ class DecisionTreeRegressor:
     #     return input_data
 
     def predict(self, input_data):
+        input_data = pd.DataFrame.from_dict([input_data])
+        input_data = np.array(input_data.values.tolist()[0])
+        input_data = input_data.reshape(1, -1)
         return self.model.predict(input_data)
 
     # def postprocessing(self, input_data):
