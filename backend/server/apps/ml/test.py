@@ -5,6 +5,8 @@ import inspect
 
 from apps.ml.registry import MLRegistry
 from apps.ml.value_boston_housing.decision_tree import DecisionTreeRegressor
+from apps.ml.value_boston_housing.random_forest_a import RandomForestA
+from apps.ml.value_boston_housing.random_forest_b import RandomForestB
 
 class MLTests(TestCase):
 
@@ -21,6 +23,34 @@ class MLTests(TestCase):
         self.assertEqual('OK', response['status'])
         #self.assertTrue('label' in response)
         self.assertEqual(34.5375, np.around(response['medv'], decimals=4))
+
+
+    def test_rf_a_algorithm(self):
+        input_data = {
+        "rm":6.998,
+        "ptratio":18.7,
+        "lstat":2.94
+        }
+
+        my_alg = RandomForestA()
+        response = my_alg.compute_prediction(input_data)
+        self.assertEqual('OK', response['status'])
+        #self.assertTrue('label' in response)
+        self.assertEqual(33.5030, np.around(response['medv'], decimals=4))
+
+
+    def test_rf_b_algorithm(self):
+        input_data = {
+        "rm":6.998,
+        "ptratio":18.7,
+        "lstat":2.94
+        }
+
+        my_alg = RandomForestB()
+        response = my_alg.compute_prediction(input_data)
+        self.assertEqual('OK', response['status'])
+        #self.assertTrue('label' in response)
+        self.assertEqual(33.3031, np.around(response['medv'], decimals=4))
 
 
     def test_registry(self):
